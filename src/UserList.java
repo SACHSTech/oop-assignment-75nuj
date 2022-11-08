@@ -18,4 +18,9 @@ public class UserList extends SpotifyList{
     public String getUser() {
         return this.user;
     }
+
+    public ArrayList<Song> getSongsList() {
+        return this.songsList;
+    }
+
 }

@@ -20,6 +20,9 @@ public class Song {
         return this.artists;
     }
 
+    public int getPlays() {
+        return this.plays;
+    }
    
 
     

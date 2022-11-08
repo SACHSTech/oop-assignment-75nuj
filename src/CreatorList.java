@@ -7,6 +7,7 @@ public class CreatorList extends SpotifyList{
 
     public CreatorList(String listName, String creator, String listType, ArrayList<Song> songsList) {
         super(listName, creator, listType);
+        this.artist = creator;
         this.songsList = songsList;
     }
 

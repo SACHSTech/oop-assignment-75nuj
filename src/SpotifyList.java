@@ -1,4 +1,4 @@
-/*
+
 public abstract class SpotifyList {
     private String listName;
     private String creator;
@@ -15,4 +15,3 @@ public abstract class SpotifyList {
 
 }
 
-*/

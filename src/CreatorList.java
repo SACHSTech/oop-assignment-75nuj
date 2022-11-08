@@ -19,10 +19,6 @@ public class CreatorList extends SpotifyList{
         return this.artist;
     }
 
-    public void updatePlays(int songNum, int newPlays) {
-        this.songsList.get(songNum).setPlays(newPlays);
-    }
-
     public int totalPlays() {
         int plays = 0;
         for(Song song : songsList) {

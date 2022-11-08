@@ -22,6 +22,9 @@ public abstract class SpotifyList {
         return this.songsList;
     }
 
+    public void updatePlays(int songNum, int newPlays) {
+        this.songsList.get(songNum).setPlays(newPlays);
+    }
 
 }
 

@@ -9,8 +9,8 @@ public class CreatorList extends SpotifyList{
         super(listName, creator, listType);
     }
 
-    public void addSong(String songName, ArrayList <String> artists, int songOrder) {
-        songsList.add(songOrder, new Song(songName, artists));
+    public void addSong(String songName, ArrayList <String> artists, int numPlays, int songOrder) {
+        songsList.add(songOrder, new Song(songName, artists, numPlays));
     }
 
     public int getNumSongs() {
@@ -21,7 +21,7 @@ public class CreatorList extends SpotifyList{
         return this.artist;
     }
 
-    
+        
 
     
 }

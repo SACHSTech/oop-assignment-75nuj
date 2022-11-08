@@ -12,6 +12,16 @@ public class Song {
         this.plays = plays;
     }
 
+    public String songName() {
+        return this.songName;
+    }
+
+    public ArrayList<String> getArtists() {
+        return this.artists;
+    }
+
+   
+
     
 
     

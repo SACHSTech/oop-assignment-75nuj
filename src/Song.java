@@ -23,9 +23,11 @@ public class Song {
     public int getPlays() {
         return this.plays;
     }
-   
 
-    
+    public void setPlays(int plays) {
+        this.plays = plays;
+    }
+   
 
     
 }

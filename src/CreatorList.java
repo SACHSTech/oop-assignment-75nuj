@@ -17,6 +17,10 @@ public class CreatorList extends SpotifyList{
         return songsList.size();
     }
 
+    public String getArtist() {
+        return this.artist;
+    }
+
     
 
     

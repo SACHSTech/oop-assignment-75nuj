@@ -11,16 +11,10 @@ public class UserList extends SpotifyList{
         this.songsList = songsList;
     }
 
-    public int getNumSongs() {
-        return songsList.size();
-    }
+    
+
 
     public String getUser() {
         return this.user;
     }
-
-    public ArrayList<Song> getSongsList() {
-        return this.songsList;
-    }
-
 }

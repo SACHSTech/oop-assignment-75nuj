@@ -15,10 +15,6 @@ public class CreatorList extends SpotifyList{
         songsList.add(songOrder, new Song(songName, artists, numPlays));
     }
 
-    public int getNumSongs() {
-        return songsList.size();
-    }
-
     public String getArtist() {
         return this.artist;
     }

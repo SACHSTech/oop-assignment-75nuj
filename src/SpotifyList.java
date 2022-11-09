@@ -9,6 +9,7 @@ public abstract class SpotifyList {
     public SpotifyList(String listName, String listType, ArrayList<Song> songsList) {
         this.listName = listName;
         this.listType = listType;
+        this.songsList = songsList;
         
     }
 
@@ -30,6 +31,10 @@ public abstract class SpotifyList {
 
     public String toString() {
         return "This " + listType + " is named " + listName + " and contains " + this.getNumSongs() + " # of songs.";
+    }
+
+    public void addSong(String songName, ArrayList <String> artists, int numPlays, int songOrder) {
+        songsList.add(songOrder, new Song(songName, artists, numPlays));
     }
 
     public abstract void getInfo();

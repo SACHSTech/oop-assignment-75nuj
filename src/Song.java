@@ -12,6 +12,13 @@ public class Song {
         this.plays = plays;
     }
 
+    public Song(String songName, String artist, int plays) {
+        ArrayList<String> artists = new ArrayList<>();
+        artists.add(artist);
+        this.songName = songName;
+        this.artists = artists;
+    }
+
     public String songName() {
         return this.songName;
     }

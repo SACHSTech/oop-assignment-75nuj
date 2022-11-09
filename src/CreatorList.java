@@ -22,9 +22,6 @@ public class CreatorList extends SpotifyList{
         return singleSong;
     }
 
-    public void addSong(String songName, ArrayList <String> artists, int numPlays, int songOrder) {
-        songsList.add(songOrder, new Song(songName, artists, numPlays));
-    }
 
     public String getArtist() {
         return this.artist;

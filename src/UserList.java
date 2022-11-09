@@ -15,7 +15,8 @@ public class UserList extends SpotifyList{
     }
 
     public void getInfo() {
-        
+        System.out.println("Songs:" + getSongsList());
+        System.out.println("Created by User:" + this.user);
     }
 
 

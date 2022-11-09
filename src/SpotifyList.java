@@ -28,6 +28,10 @@ public abstract class SpotifyList {
         return this.listType;
     }
 
+    public String toString() {
+        return "This " + listType + " is named " + listName + " and contains " + this.getNumSongs() + " # of songs.";
+    }
+
     public abstract void getInfo();
 
     

@@ -3,28 +3,23 @@ import java.util.*;
 
 public class CreatorList extends SpotifyList{
     private ArrayList<Song> songsList;
-    private String artist;
+    private String listCreator;
 
-    public CreatorList(String listName, String artist, ArrayList<Song> songsList) {
-        super(listName, "Album", songsList);
-        this.artist = artist;
+    public CreatorList(String listName, String listType, String listCreator) {
+        super(listName, listType, defaultSongList());
+        this.listCreator = listCreator;
     }
 
-    public CreatorList(String listName, String artist, Song song) {
-        super(listName, "Single", makeSingleIntoList(song));
-        this.artist = artist;
+    public static ArrayList<Song> defaultSongList() {
+        ArrayList<Song> defaultSongs = new ArrayList<>();
+        return defaultSongs;
     }
 
-    public static ArrayList<Song> makeSingleIntoList (Song song) {
-        ArrayList<Song> singleSong = new ArrayList<>();
-        singleSong.add(song);
-
-        return singleSong;
-    }
+  
 
 
-    public String getArtist() {
-        return this.artist;
+    public String getListCreator() {
+        return this.listCreator;
     }
 
     public int totalPlays() {

@@ -4,8 +4,8 @@ import java.util.*;
 public class UserList extends SpotifyList{
     private String user;
 
-    public UserList(String listName, String creator, ArrayList<Song> songsList) {
-        super(listName, "User Playlist", songsList);
+    public UserList(String listName, String creator, Song[] songs) {
+        super(listName, loopThroughSongs(songs), "User Playlist");
         this.user = creator;
     }
 

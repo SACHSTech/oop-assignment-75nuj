@@ -10,14 +10,6 @@ public class CreatorList extends SpotifyList{
         this.listCreator = listCreator;
     }
 
-    public static ArrayList<Song> loopThroughSongs(Song[] song) {
-        ArrayList<Song> defaultSongs = new ArrayList<>();
-
-        for (int i = 0; i < song.length; i++) {
-            defaultSongs.add(song[i]);
-        }
-        return defaultSongs;
-    }
 
 
     public String getListCreator() {

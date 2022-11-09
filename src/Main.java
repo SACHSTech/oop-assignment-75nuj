@@ -3,15 +3,15 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        SpotifyList melodicBlue = new CreatorList("The Melodic Blue", "Album", "Baby Keem");
         
-        Song familyTies = new Song("FamilyTies", {"Baby Keem", "Kendrick Lamar"}, 1000000);
-        familyTies.addArtist("Kendrick Lamar");
+        Song familyTies = new Song("FamilyTies", new String[]{"Baby Keem", "Kendrick Lamar"}, 1000000);
+        
 
-        Song issues = new Song("issues", "Baby Keem", 50000);
+        Song issues = new Song("issues", new String []{"Baby Keem"} , 50000);
 
-        Song duragActivity = new Song("durag activity", "Baby Keem ", 100);
-        duragActivity.addArtist("Travis Scott");
+        Song duragActivity = new Song("durag activity", new String[]{"Baby Keem", "Travis Scott"}, 100);
+
+        SpotifyList melodicBlue = new CreatorList("The Melodic Blue", new Song[] {familyTies, issues, duragActivity} , "Baby Keem");
 
         melodicBlue.addSong(1, familyTies);
         melodicBlue.addSong(2, issues);

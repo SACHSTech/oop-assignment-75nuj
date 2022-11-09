@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         SpotifyList melodicBlue = new CreatorList("The Melodic Blue", "Album", "Baby Keem");
         
-        Song familyTies = new Song("FamilyTies", "Baby Keem", 1000000);
+        Song familyTies = new Song("FamilyTies", {"Baby Keem", "Kendrick Lamar"}, 1000000);
         familyTies.addArtist("Kendrick Lamar");
 
         Song issues = new Song("issues", "Baby Keem", 50000);

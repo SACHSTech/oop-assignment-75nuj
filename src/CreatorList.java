@@ -15,8 +15,6 @@ public class CreatorList extends SpotifyList{
         return defaultSongs;
     }
 
-  
-
 
     public String getListCreator() {
         return this.listCreator;
@@ -52,7 +50,7 @@ public class CreatorList extends SpotifyList{
 
         System.out.println("");
 
-        System.out.println("By Artist: " + this.artist);
+        System.out.println("By Artist: " + this.listCreator);
         System.out.println("Average Plays: " + averagePlays());
     }
 

@@ -33,8 +33,8 @@ public abstract class SpotifyList {
         return "This " + listType + " is named " + listName + " and contains " + this.getNumSongs() + " # of songs.";
     }
 
-    public void addSong(String songName, ArrayList <String> artists, int numPlays, int songOrder) {
-        songsList.add(songOrder, new Song(songName, artists, numPlays));
+    public void addSong(int songOrder, Song song) {
+        songsList.add(songOrder, song);
     }
 
     public abstract void getInfo();

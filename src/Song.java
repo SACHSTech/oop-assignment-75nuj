@@ -6,25 +6,28 @@ public class Song {
     private ArrayList<String> artists;
     private int plays;
 
-    public Song(String songName, ArrayList<String> artists, int plays) {
+    public Song(String songName, String artist, int plays) {
         this.songName = songName;
-        this.artists = artists;
+        this.artists.add(artist);
         this.plays = plays;
     }
 
-    public Song(String songName, String artist, int plays) {
-        ArrayList<String> artists = new ArrayList<>();
+    public void addArtist(String artist) {
         artists.add(artist);
-        this.songName = songName;
-        this.artists = artists;
     }
 
     public String songName() {
         return this.songName;
     }
 
-    public ArrayList<String> getArtists() {
-        return this.artists;
+    public String getArtists() {
+        String returnString = "";
+
+        for (String artist : this.artists) {
+            returnString += artist;
+        }
+
+        return returnString;
     }
 
     public int getPlays() {

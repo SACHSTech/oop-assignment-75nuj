@@ -6,10 +6,20 @@ public class Song {
     private ArrayList<String> artists;
     private int plays;
 
-    public Song(String songName, String artist, int plays) {
+    public Song(String songName, String[] artists, int plays) {
         this.songName = songName;
-        this.artists.add(artist);
+        this.artists = loopThroughArtists(artists);
         this.plays = plays;
+    }
+
+    public static ArrayList<String> loopThroughArtists(String[] artists) {
+        ArrayList<String> defaultSongs = new ArrayList<>();
+
+        for (int i = 0; i < artists.length; i++) {
+            defaultSongs.add(artists[i]);
+        }
+
+        return defaultSongs;
     }
 
     public void addArtist(String artist) {

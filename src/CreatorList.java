@@ -5,13 +5,17 @@ public class CreatorList extends SpotifyList{
     private ArrayList<Song> songsList;
     private String listCreator;
 
-    public CreatorList(String listName, String listType, String listCreator) {
-        super(listName, listType, defaultSongList());
+    public CreatorList(String listName, Song[] songs, String listCreator) {
+        super(listName, loopThroughSongs(songs), (songs.length > 1) ? "Album" : "Single");
         this.listCreator = listCreator;
     }
 
-    public static ArrayList<Song> defaultSongList() {
+    public static ArrayList<Song> loopThroughSongs(Song[] song) {
         ArrayList<Song> defaultSongs = new ArrayList<>();
+
+        for (int i = 0; i < song.length; i++) {
+            defaultSongs.add(song[i]);
+        }
         return defaultSongs;
     }
 
@@ -22,7 +26,7 @@ public class CreatorList extends SpotifyList{
 
     public int totalPlays() {
         int plays = 0;
-        for(Song song : songsList) {
+        for(Song song : getSongsList()) {
             plays += song.getPlays();
         }
 
@@ -44,7 +48,7 @@ public class CreatorList extends SpotifyList{
         System.out.println("Tracklist: ");
 
         for(int i = 0; i < getSongsList().size(); i++) {
-            System.out.print(i + ": ");
+            System.out.print((i + 1) + ": ");
             System.out.println(getSongsList().get(i));
         }
 

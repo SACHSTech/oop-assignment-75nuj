@@ -6,7 +6,7 @@ public abstract class SpotifyList {
     private String listType;
     private ArrayList<Song> songsList;
 
-    public SpotifyList(String listName, String listType, ArrayList<Song> songsList) {
+    public SpotifyList(String listName, ArrayList<Song> songsList, String listType) {
         this.listName = listName;
         this.listType = listType;
         this.songsList = songsList;
@@ -34,7 +34,16 @@ public abstract class SpotifyList {
     }
 
     public void addSong(int songOrder, Song song) {
-        songsList.add(songOrder, song);
+        songsList.add(songOrder - 1, song);
+    }
+
+    public static ArrayList<Song> loopThroughSongs(Song[] song) {
+        ArrayList<Song> defaultSongs = new ArrayList<>();
+
+        for (int i = 0; i < song.length; i++) {
+            defaultSongs.add(song[i]);
+        }
+        return defaultSongs;
     }
 
     public abstract void getInfo();

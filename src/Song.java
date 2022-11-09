@@ -27,6 +27,10 @@ public class Song {
     public void setPlays(int plays) {
         this.plays = plays;
     }
+
+    public String toString() {
+        return "(" + songName + ": " + artists + ")";
+    }
    
 
     

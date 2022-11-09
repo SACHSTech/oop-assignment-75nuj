@@ -51,7 +51,17 @@ public class CreatorList extends SpotifyList{
     }
 
     public void getInfo() {
-        
+        System.out.println("Tracklist: ");
+
+        for(int i = 0; i < getSongsList().size(); i++) {
+            System.out.print(i + ": ");
+            System.out.println(getSongsList().get(i));
+        }
+
+        System.out.println("");
+
+        System.out.println("By Artist: " + this.artist);
+        System.out.println("Average Plays: " + averagePlays());
     }
 
     

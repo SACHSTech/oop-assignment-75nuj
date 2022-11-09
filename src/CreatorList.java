@@ -10,7 +10,10 @@ public class CreatorList extends SpotifyList{
         this.artist = artist;
     }
 
-   
+    public CreatorList(String listName, String artist, Song song) {
+        super(listName, "Single", makeSingleIntoList(song));
+        this.artist = artist;
+    }
 
     public static ArrayList<Song> makeSingleIntoList (Song song) {
         ArrayList<Song> singleSong = new ArrayList<>();

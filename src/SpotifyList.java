@@ -7,7 +7,7 @@ public abstract class SpotifyList {
     private String listType;
     private ArrayList<Song> songsList;
 
-    public SpotifyList(String listName, String creator, String listType) {
+    public SpotifyList(String listName, String creator, String listType, ArrayList<Song> songsList) {
         this.listName = listName;
         this.creator = creator;
         this.listType = listType;
@@ -22,9 +22,15 @@ public abstract class SpotifyList {
         return this.songsList;
     }
 
-    public void updatePlays(int songNum, int newPlays) {
-        this.songsList.get(songNum).setPlays(newPlays);
+    public void getListName() {
+        return this.listName;
     }
+
+  
+
+    public abstract void getInfo();
+
+    
 
 }
 

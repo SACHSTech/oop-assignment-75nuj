@@ -6,9 +6,8 @@ public class CreatorList extends SpotifyList{
     private String artist;
 
     public CreatorList(String listName, String creator, String listType, ArrayList<Song> songsList) {
-        super(listName, creator, listType);
+        super(listName, creator, listType, songsList);
         this.artist = creator;
-        this.songsList = songsList;
     }
 
     public void addSong(String songName, ArrayList <String> artists, int numPlays, int songOrder) {
@@ -28,12 +27,20 @@ public class CreatorList extends SpotifyList{
         return plays;
     }
 
-    public int averagePlays() [
+    public int averagePlays() {
         double plays = (double) this.totalPlays();
         double numSongs = (double) this.getNumSongs();
 
         return (int) (plays/numSongs);
-    ]
+    }
+
+    public void updatePlays(int songNum, int newPlays) {
+        this.songsList.get(songNum).setPlays(newPlays);
+    }
+
+    public void getInfo() {
+        
+    }
 
     
 

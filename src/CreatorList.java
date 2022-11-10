@@ -30,11 +30,11 @@ public class CreatorList extends SpotifyList{
         return plays;
     }
 
-    public int averagePlays() {
+    public double averagePlays() {
         double plays = (double) this.totalPlays();
         double numSongs = (double) this.getNumSongs();
 
-        return (int) (plays/numSongs);
+        return (plays/numSongs);
     }
 
     public void updatePlays(int songNum, int newPlays) {

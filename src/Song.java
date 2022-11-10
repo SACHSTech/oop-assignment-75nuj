@@ -12,6 +12,14 @@ public class Song {
         this.plays = plays;
     }
 
+    public Song(String songName, String artists, int plays) {
+        this.songName = songName;
+        ArrayList<String> artist = new ArrayList<>();
+        artist.add(artists);
+        this.artists = artist;
+        this.plays = plays;
+    }
+
     public static ArrayList<String> loopThroughArtists(String[] artists) {
         ArrayList<String> defaultSongs = new ArrayList<>();
 

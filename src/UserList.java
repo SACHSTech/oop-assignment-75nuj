@@ -22,14 +22,14 @@ public class UserList extends SpotifyList{
     }
 
     public void getInfo() {
-        System.out.println("Songs:");
+        System.out.println(this.getListName() + ":");
 
         for(int i = 0; i < getSongsList().size(); i++) {
             System.out.print((i + 1) + ": ");
             System.out.println(getSongsList().get(i));
         }
 
-        System.out.println("Created by User:" + this.user + " on" + this.creationDate);
+        System.out.println("Created by User: " + this.user + " on " + this.creationDate);
     }
 
 

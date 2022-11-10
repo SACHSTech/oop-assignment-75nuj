@@ -5,11 +5,16 @@ public class CreatorList extends SpotifyList{
     private ArrayList<Song> songsList;
     private String listCreator;
 
+
     public CreatorList(String listName, Song[] songs, String listCreator) {
         super(listName, loopThroughSongs(songs), (songs.length > 1) ? "Album" : "Single");
         this.listCreator = listCreator;
     }
 
+    public CreatorList(String listName, String listCreator) {
+        super(listName);
+        this.listCreator = listCreator;
+    }
 
 
     public String getListCreator() {

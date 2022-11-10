@@ -6,6 +6,11 @@ public abstract class SpotifyList {
     private String listType;
     private ArrayList<Song> songsList;
 
+    public SpotifyList(String listName) {
+        this.listName = listName;
+        this.songsList = new ArrayList<>();
+    }
+
     public SpotifyList(String listName, ArrayList<Song> songsList, String listType) {
         this.listName = listName;
         this.listType = listType;
@@ -35,6 +40,12 @@ public abstract class SpotifyList {
 
     public void addSong(int songOrder, Song song) {
         songsList.add(songOrder - 1, song);
+
+        if (songsList.size() > 1) {
+            this.listType = "Album";
+        } else if(songsList.size() == 1) {
+            this.listType = "Single";
+        }
     }
 
     public static ArrayList<Song> loopThroughSongs(Song[] song) {

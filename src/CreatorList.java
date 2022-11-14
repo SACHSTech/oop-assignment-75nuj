@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class CreatorList extends SpotifyList{
-    private ArrayList<Song> songsList;
     private String listCreator;
 
 
@@ -38,7 +37,7 @@ public class CreatorList extends SpotifyList{
     }
 
     public void updatePlays(int songNum, int newPlays) {
-        this.songsList.get(songNum).setPlays(newPlays);
+        getSongsList().get(songNum).setPlays(newPlays);
     }
 
     public void getInfo() {

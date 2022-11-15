@@ -2,7 +2,17 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+
+    private static boolean isNum(String songNum){
+        try{
+           int number = Integer.parseInt(songNum);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+    public static void main(String[] args) throws IOException {
         
         Song familyTies = new Song("Family Ties", "Baby Keem", 1000000);
         
@@ -40,6 +50,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String input = "";
+        ArrayList<Song> songlist = new ArrayList<>();
 
         System.out.println("Input (CMD) for the list of commands.");
 
@@ -47,80 +58,173 @@ public class Main {
 
             System.out.print("> ");
             input = br.readLine().toUpperCase(); 
-
-
             
-            if(input.equals("CMD")) { //if user's input is CMD (show all function keywords)
+            if(input.equals("CMD")) { 
                 System.out.println("\033[H\033[2J"); 
 
                 System.out.println("CMD --> Print all Command Codes");
-                System.out.println("NEWSONG --> ");
+                System.out.println("NEWSONG --> Make new Song");
+                System.out.println("PRINTSONGS --> Print all existing songs");
                 System.out.println("NCREATORLIST --> Print Balance (end of day)");
                 System.out.println("NUSERLIST --> Add Inventory");
-                System.out.println(" --> Add Expenses");
-                System.out.println("CASH --> CASHIER");
-                System.out.println("END --> End program.");
-                System.out.println("(CASHIER COMMANDS) \n-- SHOW INV (show inventory) \n--> DONE (finish session)" 
-                                        + "\n--> PRODUCT KEYWORD then NUMBER/WEIGHT (inputing new item to cash)");
+                System.out.println("EDITLIST --> Edit List");
+                System.out.println("VIEWLIST --> View Playlist/Album");
+                System.out.println("END --> End Program");
                 
             } 
             
-            
-            else if(input.equals("DAY")) { 
-               
+            else if(input.equals("NEWSONG")) { 
+                System.out.println("\033[H\033[2J");    
                 
-            } 
-            
-            
-            else if(input.equals("A INV")) { 
-                System.out.println("\033[H\033[2J"); 
+                System.out.print("Song Name: ");
+                String songName = br.readLine();
+                
+                System.out.println("");
+
+                System.out.print("No. of Artists: ");
+
 
                 
-            } 
-            
-            
-            else if(input.equals("A EXP")) {
-                System.out.println("\033[H\033[2J"); 
-                
-                //Input - User inputs how many times they want to add expenses
-                System.out.print("# of expenses: ");
-                int times = (int) get_num();
+                int numArtists = 0;
+                String stringNumArtists = br.readLine();
 
-                for(int i = 0; i < times; i++) {
-                    
-                    //Input - User inputs the expense name, expense length, and cost of expense, which is stored in an object
-                    System.out.print("Expense Name: ");
-                    String expenseN = sc.nextLine();
-                    System.out.print("Expense Length (in days): ");
-                    int expenseL = (int) get_num(); //execute get_num function (function that loops until valid input is given)
-                    System.out.print("Expense (in dollars): ");
-                    double expen = get_num()/expenseL; //daily expense is total expense divided by expense length 
-
-                    System.out.println();
-
-
-                    expenses.add(new Main(expenseN, expenseL, expen)); // create new object and store in expenses ArrayList
-      
+                while(!isNum(stringNumArtists)) {
+                    stringNumArtists = br.readLine();
                 }
-                
-            } 
-            
-            
-            else if(input.equals("CASH")) { // if user's input is CASH (cashier functionality)
-                System.out.println("\033[H\033[2J"); // clear screen
 
-                //Process - return value from cashier function is added to gains from day
-                gain += cashier(inventory); //execute cashier function (with inventory ArrayList as parameter), add return to what gain already has
+                numArtists = Integer.parseInt(stringNumArtists);
+                
+                
+                
+
+                System.out.println("");
+
+                if(numArtists > 1) {
+                    ArrayList<String> artists = new ArrayList<>();
+                    for(int i = 0; i < numArtists; i++) {
+                        System.out.print("Artist " + (i + 1) + ": ");
+                        artists.add(br.readLine());
+                        System.out.println("");
+                    }
+
+                    String[] artistArray = new String[artists.size()];
+                    artistArray = artists.toArray(artistArray);
+
+                    System.out.print("Plays: ");
+                    String stringPlays = "";
+                    int plays = 0;
+
+                    while(!isNum(stringPlays)) {
+                        stringPlays = br.readLine();
+                    }
+                    
+                    plays = Integer.parseInt(stringPlays);
+
+                    songlist.add(new Song(songName, artistArray, plays));
+                    
+                } else {
+                    System.out.print("Artist: ");
+                    String artist = br.readLine();
+                    
+                    System.out.print("Plays: ");
+                    int plays = Integer.parseInt(br.readLine());
+
+                    songlist.add(new Song(songName, artist, plays));
+                    
+                }
+
+                
                 
             }  
-            
-            
-            else if (input.equals("P INV")) {
-                //Output - Print out existing inventory
-                print_inventory(inventory);
+
+            else if(input.equals("PRINTSONGS")) {
+                System.out.println("\033[H\033[2J");
+                for(Song song : songlist) {
+                    System.out.println(song);
+                }
+ 
             }
+            
+            else if(input.equals("NCREATORLIST")) { 
+                System.out.println("\033[H\033[2J");
+                
+                System.out.print("List Name: ");
+                
+                String listName = br.readLine();
+
+                System.out.println("");
+
+                System.out.print("List Creator: ");
+
+                String listCreator = br.readLine();
+
+                System.out.println("");
+
+                System.out.print("# of songs to add: ");
+
+                String stringSongs = "";
+                int numSongs = 0;
+
+                while(!isNum(stringSongs)) {
+                    stringSongs = br.readLine();
+                }
+
+                numSongs = Integer.parseInt(stringSongs);
+
+                Song[] trackList = new Song[numSongs];
+
+                for (int i = 0; i < numSongs; i++) {
+                    System.out.print("Song " + (numSongs + 1) + ":");
+
+                    boolean switcher = true;
+                    ArrayList<Song> songList = new ArrayList<>();
+
+                    Song addSong = new Song(".", ".", 1);
+                    while (switcher) {
+                        String findSong = br.readLine();
+
+                        for(Song song : songlist) {
+                            if (findSong.equals(song.songName())) {
+                                songList.add(song);
+                                switcher = false;
+                            }
+                            break; 
+                        }
+                    }
 
 
+
+
+                    
+
+                }
+
+                String[] songArray = new String[artists.size()];
+                songArray = songList.toArray(songArray);
+            
+                
+            } 
+            
+            else if(input.equals("NUSERLIST")) {
+                System.out.println("\033[H\033[2J"); 
+                
+                     
+            } 
+            
+            
+            else if(input.equals("EDITLIST")) { 
+                System.out.println("\033[H\033[2J");
+
+            }  
+
+            else if(input.equals("VIEWLIST")) {
+                System.out.println("\033[H\033[2J");
+            }
+            
+            
+           
+
+        }
 
         
   

@@ -14,71 +14,133 @@ public class Main {
         return true;
     }
 
+    private static void newUserList() throws IOException {
+        System.out.println("\033[H\033[2J");
+                
+        System.out.print("List Name: ");
+        
+        String listName = br.readLine();
+
+        System.out.println("");
+
+        System.out.print("User: ");
+
+        String user = br.readLine();
+
+        System.out.println("");
+
+        System.out.print("# of songs to add: ");
+
+        String stringSongs = "";
+        int numSongs = 0;
+
+        while(!isNum(stringSongs)) {
+            stringSongs = br.readLine();
+        }
+
+        numSongs = Integer.parseInt(stringSongs);
+
+        
+
+        ArrayList<Song> songList = new ArrayList<>();
+
+        for (int i = 0; i < numSongs; i++) {
+            System.out.print("Song " + (i + 1) + ": ");
+
+            boolean switcher = true;
+            
+
+            while (switcher) {
+                String findSong = br.readLine();
+
+                for(Song song : songlist) {
+                    if (findSong.equals(song.songName())) {
+                        songList.add(song);
+                        switcher = false;
+                    }
+                    break; 
+                }
+            }
+
+
+
+
+            
+
+        }
+
+        Song[] songArray = new Song[songList.size()];
+        songArray = songList.toArray(songArray);
+
+        System.out.print("Creation Date: ");
+
+        String creationDate = br.readLine();
+        
+        if(numSongs > 0) {
+            userListList.add(new UserList(listName, user, songArray, creationDate));
+        } else {
+            userListList.add(new UserList(listName, user, creationDate));
+        }
+    }
+
     private static void newSong() throws IOException{
         System.out.println("\033[H\033[2J");    
                 
-                System.out.print("Song Name: ");
-                String songName = br.readLine();
+        System.out.print("Song Name: ");
+        String songName = br.readLine();
                 
+        System.out.print("No. of Artists: ");
+   
+        int numArtists = 0;
+        String stringNumArtists = br.readLine();
 
-                System.out.print("No. of Artists: ");
+        while(!isNum(stringNumArtists)) {
+            stringNumArtists = br.readLine();
+        }
 
-
+        numArtists = Integer.parseInt(stringNumArtists);  
                 
-                int numArtists = 0;
-                String stringNumArtists = br.readLine();
+        if(numArtists > 1) {
+            ArrayList<String> artists = new ArrayList<>();
+            for(int i = 0; i < numArtists; i++) {
+                System.out.print("Artist " + (i + 1) + ": ");
+                artists.add(br.readLine());
+                System.out.println("");
+            }
 
-                while(!isNum(stringNumArtists)) {
-                    stringNumArtists = br.readLine();
-                }
+            String[] artistArray = new String[artists.size()];
+            artistArray = artists.toArray(artistArray);
 
-                numArtists = Integer.parseInt(stringNumArtists);
-                
-                
-                
+            System.out.print("Plays: ");
+            String stringPlays = "";
+            int plays = 0;
 
-
-                if(numArtists > 1) {
-                    ArrayList<String> artists = new ArrayList<>();
-                    for(int i = 0; i < numArtists; i++) {
-                        System.out.print("Artist " + (i + 1) + ": ");
-                        artists.add(br.readLine());
-                        System.out.println("");
-                    }
-
-                    String[] artistArray = new String[artists.size()];
-                    artistArray = artists.toArray(artistArray);
-
-                    System.out.print("Plays: ");
-                    String stringPlays = "";
-                    int plays = 0;
-
-                    while(!isNum(stringPlays)) {
-                        stringPlays = br.readLine();
-                    }
+            while(!isNum(stringPlays)) {
+                stringPlays = br.readLine();
+            }
                     
-                    plays = Integer.parseInt(stringPlays);
+            plays = Integer.parseInt(stringPlays);
 
-                    songlist.add(new Song(songName, artistArray, plays));
+            songlist.add(new Song(songName, artistArray, plays));
                     
-                } else {
-                    System.out.print("Artist: ");
-                    String artist = br.readLine();
+        } else {
+            System.out.print("Artist: ");
+            String artist = br.readLine();
                     
-                    System.out.print("Plays: ");
+            System.out.print("Plays: ");
 
-                    String stringPlays = "";
+            String stringPlays = "";
 
-                    while(!isNum(stringPlays)) {
-                        stringPlays = br.readLine();
-                    }
+            while(!isNum(stringPlays)) {
+                stringPlays = br.readLine();
+            }
 
 
-                    int plays = Integer.parseInt((stringPlays));
+            int plays = Integer.parseInt((stringPlays));
 
-                    songlist.add(new Song(songName, artist, plays));
+            songlist.add(new Song(songName, artist, plays));
                     
-                }      
+        }      
                 
     }  
 
@@ -90,12 +152,7 @@ public class Main {
     static ArrayList<SpotifyList> creatorListList = new ArrayList<>();
     static ArrayList<SpotifyList> userListList = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
-        
-        
-
-
-        
+    public static void main(String[] args) throws IOException {        
 
         System.out.println("Input (CMD) for the list of commands.");
 
@@ -127,129 +184,11 @@ public class Main {
       
             
             else if(input.equals("NUSERLIST")) { 
-                System.out.println("\033[H\033[2J");
-                
-                System.out.print("List Name: ");
-                
-                String listName = br.readLine();
-
-                System.out.println("");
-
-                System.out.print("User: ");
-
-                String user = br.readLine();
-
-                System.out.println("");
-
-                System.out.print("# of songs to add: ");
-
-                String stringSongs = "";
-                int numSongs = 0;
-
-                while(!isNum(stringSongs)) {
-                    stringSongs = br.readLine();
-                }
-
-                numSongs = Integer.parseInt(stringSongs);
-
-                
-
-                ArrayList<Song> songList = new ArrayList<>();
-
-                for (int i = 0; i < numSongs; i++) {
-                    System.out.print("Song " + (i + 1) + ": ");
-
-                    boolean switcher = true;
-                    
-
-                    while (switcher) {
-                        String findSong = br.readLine();
-
-                        for(Song song : songlist) {
-                            if (findSong.equals(song.songName())) {
-                                songList.add(song);
-                                switcher = false;
-                            }
-                            break; 
-                        }
-                    }
-
-
-
-
-                    
-
-                }
-
-                Song[] songArray = new Song[songList.size()];
-                songArray = songList.toArray(songArray);
-
-                System.out.print("Creation Date: ");
-
-                String creationDate = br.readLine();
-                
-                if(numSongs > 0) {
-                    userListList.add(new UserList(listName, user, songArray, creationDate));
-                } else {
-                    userListList.add(new UserList(listName, user, creationDate));
-                }
+              newUserList();
             } 
 
             else if(input.equals("ADDSONG")) {
-
-                boolean switcher = true;
-
-                System.out.println("Add Song to Position:");
-
-                String orderNum = br.readLine();
-                
-                while(!isNum(orderNum)) {
-                    orderNum = br.readLine();
-                }
-
-                int order = Integer.parseInt(orderNum);
-                
-
-                while (switcher) {
-                    String findList = br.readLine();
-
-                    for(SpotifyList CreatorList : creatorListList) {
-                        if (findList.equals(CreatorList.getListName())) {
-                            while (switcher) {
-                                String findSong = br.readLine();
-        
-                                for(Song song : songlist) {
-                                    if (findSong.equals(song.songName())) {
-                                        CreatorList.addSong(order, song);
-                                        switcher = false;
-                                    }
-                                    break; 
-                                }
-                            }
-                            switcher = false;
-                        }
-                        break; 
-                    }
-
-                    for(SpotifyList userList : userListList) {
-                        if (findList.equals(userList.getListName())) {
-                            while (switcher) {
-                                String findSong = br.readLine();
-        
-                                for(Song song : songlist) {
-                                    if (findSong.equals(song.songName())) {
-                                        userList.addSong(order, song);
-                                        switcher = false;
-                                    }
-                                    break; 
-                                }
-                            }
-                            switcher = false;
-                        }
-                        break; 
-                    }
-                }
-
+               addSong();
                 
             }
 

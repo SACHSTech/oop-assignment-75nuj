@@ -202,6 +202,95 @@ public class Main {
 
     }
 
+    private static void listInfo(){
+        System.out.println("\033[H\033[2J");
+            
+
+
+        System.out.print("Find List: ");
+
+        boolean switcher = true;
+            
+
+        while (switcher) {
+            String findList = br.readLine();
+
+            for(SpotifyList CreatorList : creatorListList) {
+                if (findList.equals(CreatorList.getListName())) {
+                    CreatorList.getInfo();
+                    switcher = false;
+                }
+                break; 
+            }
+
+            for(SpotifyList userList : userListList) {
+                if (findList.equals(userList.getListName())) {
+                    userList.getInfo();
+                    switcher = false;
+                }
+                
+                break; 
+            
+            }
+        }
+
+    }   
+
+    private static void newCreatorList() {
+        System.out.println("\033[H\033[2J");
+                
+        System.out.print("List Name: ");
+        
+        String listName = br.readLine();
+
+        System.out.println("");
+
+        System.out.print("List Creator: ");
+
+        String listCreator = br.readLine();
+
+        System.out.println("");
+
+        System.out.print("# of songs to add: ");
+
+        String stringSongs = "";
+        int numSongs = 0;
+
+        while(!isNum(stringSongs)) {
+            stringSongs = br.readLine();
+        }
+
+        numSongs = Integer.parseInt(stringSongs);
+
+        Song[] trackList = new Song[numSongs];
+
+        ArrayList<Song> songList = new ArrayList<>();
+
+        for (int i = 0; i < numSongs; i++) {
+            System.out.print("Song " + (numSongs + 1) + ":");
+
+            boolean switcher = true;
+
+            Song addSong = new Song(".", ".", 1);
+            while (switcher) {
+                String findSong = br.readLine();
+
+                for(Song song : songlist) {
+                    if (findSong.equals(song.songName())) {
+                        songList.add(song);
+                        switcher = false;
+                    }
+                    break; 
+                }
+            }
+
+        }
+
+        String[] songArray = new String[songList.size()];
+        songArray = songList.toArray(songArray);
+
+    }
+
 
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -227,8 +316,8 @@ public class Main {
                 System.out.println("PRINTSONGS --> Print all existing songs");
                 System.out.println("PRINTLISTS --> Print all lists");
                 System.out.println("NCREATORLIST --> New Creator List");
-                System.out.println("ADDSONG --> Add Song to List");
                 System.out.println("NUSERLIST --> New User List");
+                System.out.println("ADDSONG --> Add Song to List");
                 System.out.println("LISTINFO --> View List Info");
                 System.out.println("END --> End Program");
                 
@@ -237,6 +326,10 @@ public class Main {
             else if(input.equals("NEWSONG")) { 
                 newSong();
                 
+            } 
+
+            else if(input.equals("NCREATORLIST")) { 
+                newCreatorList();
             } 
        
     
@@ -250,6 +343,29 @@ public class Main {
 
             else if(input.equals("LISTINFO")) {
                 listInfo();
+            }
+
+            else if(input.equals("PRINTSONGS")) {
+                System.out.println("\033[H\033[2J");
+                for(Song song : songlist) {
+                    System.out.println(song);
+                }
+ 
+            }
+
+            else if(input.equals("PRINTLISTS")) {
+                System.out.println("\033[H\033[2J");
+
+                for(SpotifyList creatorList: creatorListList) {
+                    System.out.println(creatorList);
+                }
+
+                
+
+                for(SpotifyList userList: userListList) {
+                    System.out.println(userList);
+                }
+
             }
 
     }

@@ -144,6 +144,64 @@ public class Main {
                 
     }  
 
+    private static void addSong() throws IOException {
+        System.out.println("\033[H\033[2J"); 
+                
+        boolean switcher = true;
+
+        System.out.println("Add Song to Position:");
+
+        String orderNum = br.readLine();
+        
+        while(!isNum(orderNum)) {
+            orderNum = br.readLine();
+        }
+
+        int order = Integer.parseInt(orderNum);
+        
+
+        while (switcher) {
+            String findList = br.readLine();
+
+            for(SpotifyList CreatorList : creatorListList) {
+                if (findList.equals(CreatorList.getListName())) {
+                    while (switcher) {
+                        String findSong = br.readLine();
+
+                        for(Song song : songlist) {
+                            if (findSong.equals(song.songName())) {
+                                CreatorList.addSong(order, song);
+                                switcher = false;
+                            }
+                            break; 
+                        }
+                    }
+                    switcher = false;
+                }
+                break; 
+            }
+
+            for(SpotifyList userList : userListList) {
+                if (findList.equals(userList.getListName())) {
+                    while (switcher) {
+                        String findSong = br.readLine();
+
+                        for(Song song : songlist) {
+                            if (findSong.equals(song.songName())) {
+                                userList.addSong(order, song);
+                                switcher = false;
+                            }
+                            break; 
+                        }
+                    }
+                    switcher = false;
+                }
+                break; 
+            }
+        }
+
+    }
+
 
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -181,62 +239,18 @@ public class Main {
                 
             } 
        
-      
-            
+    
             else if(input.equals("NUSERLIST")) { 
-              newUserList();
+                newUserList();
             } 
 
             else if(input.equals("ADDSONG")) {
-               addSong();
-                
+                addSong();
             }
 
-
-
-            
-            
- 
-
             else if(input.equals("LISTINFO")) {
-                System.out.println("\033[H\033[2J");
-            
-
-
-                System.out.print("Find List: ");
-
-                    boolean switcher = true;
-                    
-
-                    while (switcher) {
-                        String findList = br.readLine();
-
-                        for(SpotifyList CreatorList : creatorListList) {
-                            if (findList.equals(CreatorList.getListName())) {
-                                CreatorList.getInfo();
-                                switcher = false;
-                            }
-                            break; 
-                        }
-
-                        for(SpotifyList userList : userListList) {
-                            if (findList.equals(userList.getListName())) {
-                                userList.getInfo();
-                                switcher = false;
-                            }
-                            break; 
-                        }
-                    }
-            
-                }
-
-            
-           
-
-        }
-
-        
-  
+                listInfo();
+            }
 
     }
 }

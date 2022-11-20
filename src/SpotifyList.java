@@ -42,7 +42,7 @@ public abstract class SpotifyList {
     }
 
     public String toString() {
-        return "This " + listType + " is named " + listName + " and contains " + this.getNumSongs() + " # of songs.";
+        return listType + ": " + listName + " contains " + this.getNumSongs() + "song(s).";
     }
 
     public ArrayList<Song> getSongsList() {
@@ -79,6 +79,7 @@ public abstract class SpotifyList {
         }
         return defaultSongs;
     }
+
 
     public abstract void getInfo();
 

@@ -202,7 +202,7 @@ public class Main {
 
     }
 
-    private static void listInfo(){
+    private static void listInfo() throws IOException{
         System.out.println("\033[H\033[2J");
             
 
@@ -236,7 +236,7 @@ public class Main {
 
     }   
 
-    private static void newCreatorList() {
+    private static void newCreatorList() throws IOException{
         System.out.println("\033[H\033[2J");
                 
         System.out.print("List Name: ");
@@ -368,5 +368,8 @@ public class Main {
 
             }
 
+    
+        }
+    
     }
 }

@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
@@ -12,74 +13,13 @@ public class Main {
 
         return true;
     }
-    public static void main(String[] args) throws IOException {
-        
-        Song familyTies = new Song("Family Ties", "Baby Keem", 1000000);
-        
 
-        Song issues = new Song("issues", "Baby Keem", 50000);
-
-        Song duragActivity = new Song("durag activity", new String[] {"Baby Keem", "Travis Scott"}, 100);
-
-        SpotifyList melodicBlue = new CreatorList("The Melodic Blue", new Song[] {familyTies, issues, duragActivity} , "Baby Keem");
-
-
-        melodicBlue.getInfo();
-
-
-        SpotifyList dawnFM = new CreatorList("Dawn FM", "The Weeknd");
-
-        dawnFM.addSong(new Song("song", "The Weeknd", 100));
-
-        dawnFM.getInfo();
-
-        SpotifyList myPlayList1 = new UserList("my playlist", "p", new Song[] {issues, familyTies}, "June 20, 2021");
-
-
-        myPlayList1.getInfo();
-
-
-        SpotifyList myPlayList = new UserList("my playlist", "user1", "June 20, 2021");
-
-        myPlayList.addSong(duragActivity);
-        myPlayList.addSong(1, issues);
-
-        myPlayList.getInfo();
-
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        String input = "";
-        ArrayList<Song> songlist = new ArrayList<>();
-
-        System.out.println("Input (CMD) for the list of commands.");
-
-        while(!input.toUpperCase().equals("END")) {
-
-            System.out.print("> ");
-            input = br.readLine().toUpperCase(); 
-            
-            if(input.equals("CMD")) { 
-                System.out.println("\033[H\033[2J"); 
-
-                System.out.println("CMD --> Print all Command Codes");
-                System.out.println("NEWSONG --> Make new Song");
-                System.out.println("PRINTSONGS --> Print all existing songs");
-                System.out.println("NCREATORLIST --> Print Balance (end of day)");
-                System.out.println("NUSERLIST --> Add Inventory");
-                System.out.println("EDITLIST --> Edit List");
-                System.out.println("VIEWLIST --> View Playlist/Album");
-                System.out.println("END --> End Program");
-                
-            } 
-            
-            else if(input.equals("NEWSONG")) { 
-                System.out.println("\033[H\033[2J");    
+    private static void newSong() throws IOException{
+        System.out.println("\033[H\033[2J");    
                 
                 System.out.print("Song Name: ");
                 String songName = br.readLine();
                 
-                System.out.println("");
 
                 System.out.print("No. of Artists: ");
 
@@ -97,7 +37,6 @@ public class Main {
                 
                 
 
-                System.out.println("");
 
                 if(numArtists > 1) {
                     ArrayList<String> artists = new ArrayList<>();
@@ -127,25 +66,67 @@ public class Main {
                     String artist = br.readLine();
                     
                     System.out.print("Plays: ");
-                    int plays = Integer.parseInt(br.readLine());
+
+                    String stringPlays = "";
+
+                    while(!isNum(stringPlays)) {
+                        stringPlays = br.readLine();
+                    }
+
+
+                    int plays = Integer.parseInt((stringPlays));
 
                     songlist.add(new Song(songName, artist, plays));
                     
-                }
-
+                }      
                 
-                
-            }  
+    }  
 
-            else if(input.equals("PRINTSONGS")) {
-                System.out.println("\033[H\033[2J");
-                for(Song song : songlist) {
-                    System.out.println(song);
-                }
- 
-            }
+
+
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static String input = "";
+    static ArrayList<Song> songlist = new ArrayList<>();
+    static ArrayList<SpotifyList> creatorListList = new ArrayList<>();
+    static ArrayList<SpotifyList> userListList = new ArrayList<>();
+
+    public static void main(String[] args) throws IOException {
+        
+        
+
+
+        
+
+        System.out.println("Input (CMD) for the list of commands.");
+
+        while(!input.toUpperCase().equals("END")) {
+
+            System.out.print("> ");
+            input = br.readLine().toUpperCase(); 
             
-            else if(input.equals("NCREATORLIST")) { 
+            if(input.equals("CMD")) { 
+                System.out.println("\033[H\033[2J"); 
+
+                System.out.println("CMD --> Print all Command Codes");
+                System.out.println("NEWSONG --> Make new Song");
+                System.out.println("PRINTSONGS --> Print all existing songs");
+                System.out.println("PRINTLISTS --> Print all lists");
+                System.out.println("NCREATORLIST --> New Creator List");
+                System.out.println("ADDSONG --> Add Song to List");
+                System.out.println("NUSERLIST --> New User List");
+                System.out.println("LISTINFO --> View List Info");
+                System.out.println("END --> End Program");
+                
+            } 
+            
+            else if(input.equals("NEWSONG")) { 
+                newSong();
+                
+            } 
+       
+      
+            
+            else if(input.equals("NUSERLIST")) { 
                 System.out.println("\033[H\033[2J");
                 
                 System.out.print("List Name: ");
@@ -154,9 +135,9 @@ public class Main {
 
                 System.out.println("");
 
-                System.out.print("List Creator: ");
+                System.out.print("User: ");
 
-                String listCreator = br.readLine();
+                String user = br.readLine();
 
                 System.out.println("");
 
@@ -171,15 +152,16 @@ public class Main {
 
                 numSongs = Integer.parseInt(stringSongs);
 
-                Song[] trackList = new Song[numSongs];
+                
+
+                ArrayList<Song> songList = new ArrayList<>();
 
                 for (int i = 0; i < numSongs; i++) {
-                    System.out.print("Song " + (numSongs + 1) + ":");
+                    System.out.print("Song " + (i + 1) + ": ");
 
                     boolean switcher = true;
-                    ArrayList<Song> songList = new ArrayList<>();
+                    
 
-                    Song addSong = new Song(".", ".", 1);
                     while (switcher) {
                         String findSong = br.readLine();
 
@@ -199,28 +181,116 @@ public class Main {
 
                 }
 
-                String[] songArray = new String[artists.size()];
+                Song[] songArray = new Song[songList.size()];
                 songArray = songList.toArray(songArray);
-            
-                
-            } 
-            
-            else if(input.equals("NUSERLIST")) {
-                System.out.println("\033[H\033[2J"); 
-                
-                     
-            } 
-            
-            
-            else if(input.equals("EDITLIST")) { 
-                System.out.println("\033[H\033[2J");
 
-            }  
+                System.out.print("Creation Date: ");
 
-            else if(input.equals("VIEWLIST")) {
-                System.out.println("\033[H\033[2J");
+                String creationDate = br.readLine();
+                
+                if(numSongs > 0) {
+                    userListList.add(new UserList(listName, user, songArray, creationDate));
+                } else {
+                    userListList.add(new UserList(listName, user, creationDate));
+                }
+            } 
+
+            else if(input.equals("ADDSONG")) {
+
+                boolean switcher = true;
+
+                System.out.println("Add Song to Position:");
+
+                String orderNum = br.readLine();
+                
+                while(!isNum(orderNum)) {
+                    orderNum = br.readLine();
+                }
+
+                int order = Integer.parseInt(orderNum);
+                
+
+                while (switcher) {
+                    String findList = br.readLine();
+
+                    for(SpotifyList CreatorList : creatorListList) {
+                        if (findList.equals(CreatorList.getListName())) {
+                            while (switcher) {
+                                String findSong = br.readLine();
+        
+                                for(Song song : songlist) {
+                                    if (findSong.equals(song.songName())) {
+                                        CreatorList.addSong(order, song);
+                                        switcher = false;
+                                    }
+                                    break; 
+                                }
+                            }
+                            switcher = false;
+                        }
+                        break; 
+                    }
+
+                    for(SpotifyList userList : userListList) {
+                        if (findList.equals(userList.getListName())) {
+                            while (switcher) {
+                                String findSong = br.readLine();
+        
+                                for(Song song : songlist) {
+                                    if (findSong.equals(song.songName())) {
+                                        userList.addSong(order, song);
+                                        switcher = false;
+                                    }
+                                    break; 
+                                }
+                            }
+                            switcher = false;
+                        }
+                        break; 
+                    }
+                }
+
+                
             }
+
+
+
             
+            
+ 
+
+            else if(input.equals("LISTINFO")) {
+                System.out.println("\033[H\033[2J");
+            
+
+
+                System.out.print("Find List: ");
+
+                    boolean switcher = true;
+                    
+
+                    while (switcher) {
+                        String findList = br.readLine();
+
+                        for(SpotifyList CreatorList : creatorListList) {
+                            if (findList.equals(CreatorList.getListName())) {
+                                CreatorList.getInfo();
+                                switcher = false;
+                            }
+                            break; 
+                        }
+
+                        for(SpotifyList userList : userListList) {
+                            if (findList.equals(userList.getListName())) {
+                                userList.getInfo();
+                                switcher = false;
+                            }
+                            break; 
+                        }
+                    }
+            
+                }
+
             
            
 

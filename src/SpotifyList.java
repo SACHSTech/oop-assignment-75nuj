@@ -25,7 +25,12 @@ public abstract class SpotifyList {
     }
 
     public int getNumSongs() {
-        return songsList.size();
+        try {
+            return songsList.size();
+        } catch (Exception e) {
+            return 0;
+        }
+        
     }
 
     public String getListName() {
